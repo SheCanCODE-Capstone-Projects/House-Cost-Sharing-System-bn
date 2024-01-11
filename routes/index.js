@@ -1,8 +1,8 @@
 const express=require('express');
-const adminRouter = require('./admin.routes');
+const houseRouter = require('./house.routes');
 const allRoutes = express();
 
-allRoutes.use('/admin' ,adminRouter);
+allRoutes.use('/house' ,houseRouter);
 
 
 module.exports = allRoutes;
