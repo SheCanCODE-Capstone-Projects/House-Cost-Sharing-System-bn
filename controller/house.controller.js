@@ -39,10 +39,28 @@ const update = async (req, res, next) => {
     } catch (error) {
         res.status(500).send(error.message);
     }
+};
+
+const remove = async (req, res, next) => {
+    try{
+        var deletedProperty = await houseModel.findByIdAndDelete(req.query.id);
+        if(deletedProperty) {
+            res.status(200).json({
+                message: "This property has been deleted successfully",
+            });
+        }
+        else{
+            res.status(404).send("This house is not found!");
+        }
+    }
+    catch(error){
+        res.status(500).send(error);
+    }
 }
 
 module.exports ={
     create,
     list,
-    update
+    update,
+    remove
 }
