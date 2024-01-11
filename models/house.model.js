@@ -32,12 +32,16 @@ const adminSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true,"The email is required"],
-        unique: true
+        unique: true,
+        match: [
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+            'Please provide a valid email',
+        ]
 
     },
     contact: {
         type: String,
-        required: [true,"The email is required"],
+        required: [true,"The contact is required"],
         unique: true
 
     }
