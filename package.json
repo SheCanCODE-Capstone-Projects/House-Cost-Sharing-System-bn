@@ -2,8 +2,9 @@
   "name": "house-cost-sharing-system-bn",
   "version": "1.0.0",
   "description": "This backend setup",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -14,7 +14,19 @@ const create = async (req, res, next) => {
         
     }
 };
+const list = async (req, res, next) => {
+    try {
+        var allProperty = await houseModel.find({});
+        res.status(200).json({
+            allProperty
+        });
+    } catch (error) {
+        res.status(500).send(error);
+        
+    }
+};
 
 module.exports ={
-    create
+    create,
+    list,
 }
