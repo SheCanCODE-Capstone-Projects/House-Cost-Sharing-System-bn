@@ -26,7 +26,23 @@ const list = async (req, res, next) => {
     }
 };
 
+const update = async (req, res, next) => {
+    try {
+        console.log(req.body);
+        var updatedHouse = await houseModel.findByIdAndUpdate({_id:req.query.id},req.body);
+        var house = await houseModel.find(updatedHouse._id);
+    
+        res.status(201).json({
+        message:'house updated successfully',
+        house
+        })
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
+
 module.exports ={
     create,
     list,
+    update
 }
