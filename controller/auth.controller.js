@@ -1,5 +1,5 @@
 const { model } = require('mongoose');
-const UserModel = require('../models/user.model');
+const authModel = require('../models/auth.model');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const sendEmail = require('../middlewares/sendEmail');
@@ -8,7 +8,7 @@ const sendEmail = require('../middlewares/sendEmail');
 const SignUp = async (req, res, next) => {
     const {fullName, email, password} =req.body;
     try{
-        var userExists = await UserModel.findOne({ email: email });
+        var userExists = await authModel.findOne({ email: email });
         console.log(userExists);
 
         if(userExists){
@@ -16,7 +16,7 @@ const SignUp = async (req, res, next) => {
         } else{
             const hashedPassword = bcryptjs.hashSync(password, 10);
             
-            var newUser = new UserModel({
+            var newUser = new authModel({
                 email: email,
                 password: hashedPassword,
                 fullName: fullName
@@ -34,7 +34,7 @@ const SignUp = async (req, res, next) => {
 const SignIn = async (req, res, next) => {
     const { email, password } = req.body;
     try {
-        const validUser = await UserModel.findOne({ email: email});
+        const validUser = await authModel.findOne({ email: email});
 
         if (!validUser) return res.status(500).json({ message: "Wrong password or email!" });    
 
@@ -61,7 +61,7 @@ const SignIn = async (req, res, next) => {
 
     const ForgotPassword = async (req, res, next) => {
         try {
-            const validUser = await UserModel.findOne({ email: req.body.email});    
+            const validUser = await authModel.findOne({ email: req.body.email});    
             if (!validUser) return next(errorHandler(401, "Invalid email"));
             
             var token = jwt.sign({ email: req.body }, process.env.JWT_SECRET_KEY, { expiresIn: 1200 });
