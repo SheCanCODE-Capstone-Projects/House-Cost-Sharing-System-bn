@@ -8,7 +8,7 @@ const create = async (req, res, next) => {
             message: 'property recorded successfully',
             recordedProperty
         })
-        res.status(500).json({message: 'property already exists'})
+        res.status(500).json({message: 'property already exists'}) 
     } catch (error) {
         res.status(500) .json({message:error.message});
         
