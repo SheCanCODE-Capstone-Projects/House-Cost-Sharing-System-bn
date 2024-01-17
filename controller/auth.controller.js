@@ -77,9 +77,27 @@ const SignIn = async (req, res, next) => {
         }
     };
 
+const remove = async (req, res, next) => {
+    try{
+        var deletedProperty = await authModel.findByIdAndDelete(req.query.id);
+        if(deletedProperty) {
+            res.status(200).json({
+                message: "This property has been deleted successfully",
+            });
+        }
+        else{
+            res.status(404).send("This house is not found!");
+        }
+    }
+    catch(error){
+        res.status(500).send(error);
+    }
+}
 
 module.exports = {
     SignUp,
     SignIn,
-    ForgotPassword
+    ForgotPassword,
+    remove
 }
+
