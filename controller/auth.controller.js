@@ -76,6 +76,17 @@ const SignIn = async (req, res, next) => {
             res.status(500).json(error.message);
         }
     };
+    const update = async (req, res, next) => {
+        try {
+            var id =req.query.id;
+            var toUpdate = await authModel.findByIdAndUpdate({_id:id}, req.body);
+            console.log(toUpdate);
+            res.status(200).send({message:"User updated successfully"});
+            
+        } catch (error) {
+            res.status(500).send(error.message);
+        }
+    };
 
 const remove = async (req, res, next) => {
     try{
@@ -98,6 +109,7 @@ module.exports = {
     SignUp,
     SignIn,
     ForgotPassword,
+    update,
     remove
 }
 
