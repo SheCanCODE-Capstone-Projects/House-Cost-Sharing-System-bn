@@ -6,7 +6,7 @@ const sendEmail = require('../middlewares/sendEmail');
 
 
 const SignUp = async (req, res, next) => {
-    const {fullName, email, password} =req.body;
+    const {firstName, lastName,email, password} =req.body;
     try{
         var userExists = await authModel.findOne({ email: email });
         console.log(userExists);
@@ -19,7 +19,8 @@ const SignUp = async (req, res, next) => {
             var newUser = new authModel({
                 email: email,
                 password: hashedPassword,
-                fullName: fullName
+                firstName: firstName,
+                lastName:lastName
             });
 
             var savedUser = await newUser.save();
