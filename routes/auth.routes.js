@@ -7,5 +7,5 @@ authRoute.post('/signin', SignIn);
 authRoute.post('/signup', SignUp);
 authRoute.post('/forgot-password', ForgotPassword);
 authRoute.post('/delete', remove);
-authRoute.post('/update', update);
+authRoute.put('/update', update);
 module.exports = authRoute;
