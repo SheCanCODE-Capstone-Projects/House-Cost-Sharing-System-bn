@@ -3,11 +3,6 @@ const mongoose = require('mongoose');
 
 const adminSchema = new mongoose.Schema({
 
-    propertyOwner:{
-       type: String,
-        required: [true, "Property owner is required"]
-    },
-
     propertyName: {
         type: String,
         unique: true,
@@ -21,30 +16,64 @@ const adminSchema = new mongoose.Schema({
     },
     description: {
         type: String,
-        required: [true,"The Description of Property is required"]
+        required: [true, "The Description of Property is required"]
 
+    },
+
+    Location: {
+        type: String,
+        required: [true, "The Location of Property is required"]
+    },
+    address: {
+        type: String,
+        required: [true, "The Address of Property is required"]
+    },
+
+    bedrooms: {
+        type: String,
+        required: [true, "The Address of Property is required"]
+    },
+    bathrooms: {
+        type: String,
+        required: [true, "The Address of Property is required"]
+    },
+    surface: {
+        type: String,
+        required: [true, "The Address of Property is required"]
+    },
+    agent: {
+        image: {
+            type: String,
+            required: [false, "The Image of Property is required"]
+        },
+        name: {
+            type: String,
+            required: [true, "The Name of the owner is required"]
+        },
+        email: {
+            type: String,
+            required: [true, "The email is required"],
+            unique: true,
+            match: [
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                'Please provide a valid email',
+            ]
+        },
+        phone: {
+            type: String,
+            required: [true, "The phone of the owner is required"]
+        },
+        message: {
+            type: String,
+            required: [true, "The message is required"]
+        }
     },
     cost: {
         type: String,
-        required: [true,"The Cost of Property is required"]
-
-    },
-    email: {
-        type: String,
-        required: [true,"The email is required"],
-        unique: true,
-        match: [
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            'Please provide a valid email',
-        ]
-
-    },
-    contact: {
-        type: String,
-        required: [true,"The contact is required"],
-        unique: true
+        required: [true, "The Cost of Property is required"]
 
     }
+
 
 });
 

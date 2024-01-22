@@ -25,6 +25,10 @@ const SignUp = async (req, res, next) => {
 
             var savedUser = await newUser.save();
             res.status(201).json({message: 'Account created successfully'});
+            // var subject = "Welcome to our website";
+            // var message = "You have signed up successfully";
+            // var a = "tracuna005@gmail.com";
+            // await sendEmail(a, subject, message);
         } 
     }
     catch(error) {
