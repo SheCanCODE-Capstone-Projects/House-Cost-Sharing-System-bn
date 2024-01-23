@@ -1,3 +1,4 @@
+const { StatusCodes } = require('http-status-codes');
 const { model } = require('mongoose');
 const authModel = require('../models/auth.model');
 const bcryptjs = require('bcryptjs');
