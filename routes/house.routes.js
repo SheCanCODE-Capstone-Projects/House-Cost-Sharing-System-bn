@@ -1,6 +1,6 @@
 const express = require('express');
 const houseRouter = express.Router();
-const {create,list,update, remove} = require ('../controller/house.controller');
+const {create,list,update, remove,findByMany} = require ('../controller/house.controller');
 
 
 houseRouter.post('/add', create);

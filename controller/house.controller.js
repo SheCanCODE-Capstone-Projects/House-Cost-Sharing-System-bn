@@ -1,10 +1,11 @@
+const { StatusCodes } = require('http-status-codes');
 const houseModel =require('../models/house.model');
 
 const create = async (req, res, next) => {
 
     try {
         var recordedProperty = await houseModel. create(req.body);
-        res.status(201).json({
+        res.status(StatusCodes.CREATED).json({
             message: 'property recorded successfully',
             recordedProperty
         })
@@ -40,7 +41,6 @@ const update = async (req, res, next) => {
         res.status(500).send(error.message);
     }
 };
-
 const remove = async (req, res, next) => {
     try{
         var deletedProperty = await houseModel.findByIdAndDelete(req.query.id);
